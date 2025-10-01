@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkbl4i3t05hed"]
+
+[ext_resource type="Texture2D" uid="uid://cj4kj1b3vrngy" path="res://UiBlackgroud/Menublackgroud.jpg" id="1_natt5"]
+[ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="2_r3g3c"]
+[ext_resource type="Texture2D" uid="uid://b3ro84ielisfb" path="res://UiBlackgroud/logogame3D.png" id="3_r3g3c"]
+
+[node name="mainmenu" type="Node2D"]
+
+[node name="Menublackgroud" type="Sprite2D" parent="."]
+position = Vector2(645, 278.00003)
+scale = Vector2(1.2980002, 1.298)
+texture = ExtResource("1_natt5")
+
+[node name="Start" type="Button" parent="."]
+offset_left = 481.0
+offset_top = 374.0
+offset_right = 769.0
+offset_bottom = 463.0
+theme_override_colors/font_outline_color = Color(0.14044744, 0.14044744, 0.14044744, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_r3g3c")
+theme_override_font_sizes/font_size = 57
+text = "START"
+
+[node name="Logogame3d" type="Sprite2D" parent="."]
+position = Vector2(628, 167)
+scale = Vector2(1.133, 1.133)
+texture = ExtResource("3_r3g3c")
