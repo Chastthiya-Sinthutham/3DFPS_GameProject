@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8s0iuukpifpo"]
+
+[ext_resource type="Texture2D" uid="uid://qpxtafaoby2p" path="res://UiBlackgroud/lose.jpg" id="1_5bdnp"]
+[ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="2_ycbao"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ycbao"]
+load_path = "res://.godot/imported/Defeat.png-24f0e26fca0044da3190f3e430293e13.ctex"
+
+[node name="Defeat" type="Node2D"]
+
+[node name="Lose" type="Sprite2D" parent="."]
+position = Vector2(648.4918, 296.43747)
+scale = Vector2(2.6551354, 2.6639907)
+texture = ExtResource("1_5bdnp")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 422.0
+offset_top = 113.0
+offset_right = 871.0
+offset_bottom = 274.0
+theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
+theme_override_constants/outline_size = 34
+theme_override_fonts/font = ExtResource("2_ycbao")
+theme_override_font_sizes/font_size = 140
+text = "DEFEAT"
+
+[node name="START" type="Button" parent="."]
+offset_left = 492.0
+offset_top = 333.0
+offset_right = 813.0
+offset_bottom = 431.0
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_ycbao")
+theme_override_font_sizes/font_size = 54
+text = "START"
+
+[node name="MainMenu" type="Button" parent="."]
+offset_left = 492.0
+offset_top = 459.0
+offset_right = 813.0
+offset_bottom = 549.0
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("2_ycbao")
+theme_override_font_sizes/font_size = 48
+text = "MAIN MENU"
+
+[node name="Defeat" type="Sprite2D" parent="."]
+position = Vector2(649, 221)
+scale = Vector2(1.438, 1.438)
+texture = SubResource("CompressedTexture2D_ycbao")
