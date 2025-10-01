@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq7kuh0j12ggy"]
+
+[ext_resource type="PackedScene" uid="uid://is0digk1fxck" path="res://models/Spike Platform.glb" id="1_ipc3j"]
+
+[node name="Node3D" type="Node"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_ipc3j")]

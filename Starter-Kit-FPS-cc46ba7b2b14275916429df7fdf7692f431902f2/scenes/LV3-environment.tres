@@ -1,0 +1,29 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://djfdw5sf21tsm"]
+
+[ext_resource type="Texture2D" uid="uid://dm0a26braxlhh" path="res://models/ice/1000_F_1153165046_EsqwrAfB4hePvCFrbFeqtAVqyUf7bTJ5.jpg" id="1_1f1eq"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_46cum"]
+panorama = ExtResource("1_1f1eq")
+energy_multiplier = 0.23
+
+[sub_resource type="Sky" id="Sky_7bk1c"]
+sky_material = SubResource("PanoramaSkyMaterial_46cum")
+
+[resource]
+background_mode = 2
+background_color = Color(0.360784, 0.392157, 0.462745, 1)
+sky = SubResource("Sky_7bk1c")
+ambient_light_source = 2
+ambient_light_color = Color(0.662745, 0.694118, 0.772549, 1)
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 0.45
+ssao_intensity = 1.0
+ssao_power = 5.0
+glow_enabled = true
+glow_levels/2 = 0.6
+glow_levels/3 = 0.6
+glow_levels/5 = 6.0
+glow_intensity = 2.0
+glow_strength = 0.45
+glow_bloom = 0.5

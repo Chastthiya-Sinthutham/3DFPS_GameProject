@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://br75dsk6u48go"]
+
+[ext_resource type="Script" uid="uid://dcoce2ut0pmke" path="res://objects/star.gd" id="1_sdkek"]
+[ext_resource type="PackedScene" uid="uid://bkwwxvaw8bsok" path="res://objects/Planet.glb" id="2_sdkek"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_sdkek")
+
+[node name="Root Scene" parent="." instance=ExtResource("2_sdkek")]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://co3c1fb5qjrx5"]
+
+[ext_resource type="Script" path="res://objects/enemy_follow.gd" id="1_mpnts"]
+[ext_resource type="PackedScene" uid="uid://casmru4lq37sr" path="res://models/Spaceship.glb" id="3_mpnts"]
+[ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="3_ve0yl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4auhi"]
+size = Vector3(4.972412, 2.7924805, 4.0819244)
+
+[node name="enemy-follow" type="Area3D"]
+script = ExtResource("1_mpnts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.038208008, -1.0109863, -0.05416107)
+shape = SubResource("BoxShape3D_4auhi")
+
+[node name="RayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 5)
+
+[node name="MuzzleA" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.0002246, 0.2827037, 1.0684886)
+sprite_frames = ExtResource("3_ve0yl")
+frame = 2
+frame_progress = 1.0
+
+[node name="MuzzleB" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.9633511, 0.43863958, 1.412831)
+sprite_frames = ExtResource("3_ve0yl")
+frame = 2
+frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="Root Scene2" parent="." instance=ExtResource("3_mpnts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5809774, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
