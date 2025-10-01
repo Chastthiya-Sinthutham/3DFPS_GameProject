@@ -2,7 +2,7 @@ extends Node3D
 
 @export var point_a: Vector3
 @export var point_b: Vector3
-@export var speed := 3.0
+@export var speed := 1.5
 
 var going_to_b := true
 
