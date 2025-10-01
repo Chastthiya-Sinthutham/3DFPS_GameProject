@@ -8,6 +8,7 @@
 size = Vector3(4.972412, 2.7924805, 4.0819244)
 
 [node name="enemy-follow" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5100086, 0)
 script = ExtResource("1_mpnts")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -15,7 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.038208008, -1.0109863, -0.0
 shape = SubResource("BoxShape3D_4auhi")
 
 [node name="RayCast" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, 5)
+target_position = Vector3(0, 0, 10)
 
 [node name="MuzzleA" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.0002246, 0.2827037, 1.0684886)

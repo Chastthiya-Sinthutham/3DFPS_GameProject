@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5qk8kc7yxyoa"]
+[gd_scene load_steps=16 format=3 uid="uid://5qk8kc7yxyoa"]
 
 [ext_resource type="Environment" uid="uid://b1715116eox1p" path="res://scenes/Level2-environment.tres" id="1_76toy"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_76toy"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dwvgakav2kln1" path="res://models/Level2/platform_4_level_2.tscn" id="13_56gwk"]
 [ext_resource type="PackedScene" uid="uid://br75dsk6u48go" path="res://objects/meteo.tscn" id="13_cleqw"]
 [ext_resource type="PackedScene" uid="uid://kh6vjfnxyi2w" path="res://objects/star.tscn" id="13_ve5ok"]
+[ext_resource type="PackedScene" uid="uid://bk6sqcljq78ns" path="res://models/Flag.glb" id="14_ve5ok"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpmwk"]
 font = ExtResource("4_56gwk")
@@ -232,5 +233,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6898, 46.7059, -48.9068)
 
 [node name="Node3D17" parent="Decoration" instance=ExtResource("13_cleqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.7408, 46.7059, 28.0539)
+
+[node name="Root Scene" parent="Decoration" instance=ExtResource("14_ve5ok")]
+transform = Transform3D(0.35955715, 0, 0.93312305, 0, 1, 0, -0.93312305, 0, 0.35955715, -65.00473, 16.246809, 3.504533)
 
 [connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
