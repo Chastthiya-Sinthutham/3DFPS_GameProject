@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var movement_speed = 5
 @export_range(0, 100) var number_of_jumps:int = 2
 @export var jump_strength = 8
-
+@export var max_health := 100
 @export_subgroup("Weapons")
 @export var weapons: Array[Weapon] = []
 
@@ -33,6 +33,8 @@ var container_offset = Vector3(1.2, -1.1, -2.75)
 var tween:Tween
 
 signal health_updated
+signal heal_effect
+signal player_hit
 
 @onready var camera = $Head/Camera
 @onready var raycast = $Head/Camera/RayCast
@@ -170,7 +172,7 @@ func handle_gravity(delta):
 
 func action_jump():	
 	Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
-	gravity = -jump_strength	
+	gravity = -jump_strength
 	jumps_remaining -= 1
 
 # Shooting
@@ -274,14 +276,23 @@ func change_weapon():
 		child.layers = 2
 		
 	# Set weapon data
-	
 	raycast.target_position = Vector3(0, 0, -1) * weapon.max_distance
 	crosshair.texture = weapon.crosshair
 
 func damage(amount):
-	
 	health -= amount
+	emit_signal("player_hit")
 	health_updated.emit(health) # Update health on HUD
-	
+
 	if health < 0:
-		get_tree().reload_current_scene() # Reset when out of health
+		call_deferred("_reload_scene") # Reset scene safely
+
+func _reload_scene():
+	get_tree().reload_current_scene()
+
+func heal(amount):
+	health += amount
+	if health > max_health:
+		health = max_health
+	emit_signal("heal_effect")
+	health_updated.emit(health)  # อัปเดต HUD ถ้ามีระบบนี้

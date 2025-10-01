@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=17 format=3 uid="uid://dxvvlck8lej3f"]
 
+[ext_resource type="Script" uid="uid://cjdbdtvm8wa4k" path="res://scenes/main.gd" id="1_jkv2x"]
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
 [ext_resource type="Script" uid="uid://by0qn28x1i1jj" path="res://scripts/hud.gd" id="3_s8mkj"]
@@ -10,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="7_wggef"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="10_5ksau"]
+[ext_resource type="PackedScene" uid="uid://dq7kuh0j12ggy" path="res://objects/spike.tscn" id="11_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://ti1jvtvrmhwg" path="res://objects/pickup_heal.tscn" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="13_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://7j2v3wel26a7" path="res://objects/movingplatform.tscn" id="14_jkv2x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpmwk"]
 font = ExtResource("3_w27de")
@@ -18,6 +23,7 @@ outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_jkv2x")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_q8fpv")
@@ -98,7 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -3.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7, 1, -2)
 
 [node name="wall-high" parent="Level" instance=ExtResource("7_cabne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.5, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.5, 6)
 
 [node name="wall-high2" parent="Level" instance=ExtResource("7_cabne")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.5, 3, -5.5)
@@ -153,4 +159,46 @@ transform = Transform3D(1.73205, 0, 1, 0, 2, 0, -1, 0, 1.73205, -30.1261, 2.4268
 [node name="cube4" parent="Decoration" instance=ExtResource("10_5ksau")]
 transform = Transform3D(1.12202, 1.39419, -2.40776, 1.53922, 1.85165, 1.78946, 2.31773, -1.90463, -0.0227883, -0.881504, 13.0297, -30.1859)
 
-[connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
+[node name="Trap" type="Node" parent="."]
+
+[node name="Root Scene" parent="Trap" instance=ExtResource("11_eb6dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1698327, 0.9449563, 5.3529487)
+
+[node name="Item" type="Node" parent="."]
+
+[node name="Pickup_Health2" parent="Item" instance=ExtResource("12_eb6dy")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, -2, 1.435, -5)
+
+[node name="justportal" parent="." instance=ExtResource("13_a8y0u")]
+transform = Transform3D(2.086693, 0, 2.0852365, 0, 2.9499998, 0, -2.0852365, 0, 2.086693, -4.7545385, -0.21357846, 3.4677904)
+
+[node name="Movingplatform" parent="." instance=ExtResource("14_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2576303, 0, 11.914553)
+
+[node name="RedFlash" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="damaged" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.19607843, 0.14117648, 0.21960784)
+
+[node name="heal" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.25882354)
+
+[node name="Timer" type="Timer" parent="RedFlash"]
+
+[connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
+[connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
