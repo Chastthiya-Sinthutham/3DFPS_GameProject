@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1c7uw5ih4c13"]
+[gd_scene load_steps=18 format=3 uid="uid://b1c7uw5ih4c13"]
 
 [ext_resource type="Texture2D" uid="uid://dm0a26braxlhh" path="res://models/ice/1000_F_1153165046_EsqwrAfB4hePvCFrbFeqtAVqyUf7bTJ5.jpg" id="1_uk7o7"]
+[ext_resource type="Script" uid="uid://dnbfp72ykl1c" path="res://scenes/lv_3.gd" id="1_wbaqx"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_wbaqx"]
 [ext_resource type="Script" uid="uid://by0qn28x1i1jj" path="res://scripts/hud.gd" id="3_4jh0y"]
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="4_w18ej"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cdavypexerr3k" path="res://objects/platform_ice_4.tscn" id="11_tuvvs"]
 [ext_resource type="PackedScene" uid="uid://bk6sqcljq78ns" path="res://models/Flag.glb" id="12_ri4nv"]
 [ext_resource type="PackedScene" uid="uid://650ntwtxdvx6" path="res://objects/platform_ice.tscn" id="12_tuvvs"]
+[ext_resource type="AudioStream" uid="uid://cp4ho12xijueu" path="res://music/minecraft-fortnite-roblox-background-music-368024.mp3" id="13_4jh0y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tuvvs"]
 panorama = ExtResource("1_uk7o7")
@@ -29,6 +31,7 @@ outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
 
 [node name="LV3" type="Node3D"]
+script = ExtResource("1_wbaqx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4jh0y")
@@ -371,4 +374,35 @@ transform = Transform3D(0.7029143, 0, 3.0213106, 0, 3.102, 0, -3.0213106, 0, 0.7
 [node name="platform_ice27" parent="." instance=ExtResource("11_tuvvs")]
 transform = Transform3D(0.3173117, -0.62721765, 3.0213106, 2.7679462, 1.400314, -6.6479316e-08, -1.3638889, 2.6959457, 0.70291424, 70.96261, 21.07226, 13.071064)
 
+[node name="music" type="Node" parent="."]
+
+[node name="MinecraftFortniteRobloxBackgroundMusic368024" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("13_4jh0y")
+
+[node name="RedFlash" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="damaged" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.19607843, 0.14117648, 0.21960784)
+
+[node name="heal" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.25882354)
+
+[node name="Timer" type="Timer" parent="RedFlash"]
+
+[connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]

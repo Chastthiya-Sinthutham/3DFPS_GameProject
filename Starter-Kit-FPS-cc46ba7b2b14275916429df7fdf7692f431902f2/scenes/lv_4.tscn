@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1fyqciwdgtfa"]
+[gd_scene load_steps=21 format=3 uid="uid://b1fyqciwdgtfa"]
 
+[ext_resource type="Script" uid="uid://cucwkkft2pj21" path="res://scenes/lv_4.gd" id="1_el06h"]
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_ptjn7"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_i4yga"]
 [ext_resource type="Script" uid="uid://by0qn28x1i1jj" path="res://scripts/hud.gd" id="3_er54t"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://crdcxhjc1ne4k" path="res://objects/building_7.tscn" id="16_0orcr"]
 [ext_resource type="PackedScene" uid="uid://7j2v3wel26a7" path="res://objects/movingplatform.tscn" id="16_lh3j1"]
 [ext_resource type="PackedScene" uid="uid://co3c1fb5qjrx5" path="res://objects/enemy_follow2.tscn" id="17_lh3j1"]
+[ext_resource type="AudioStream" uid="uid://dd8dfpgwylahg" path="res://music/workout-10823.mp3" id="19_nml88"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sf5a2"]
 font = ExtResource("4_ptjn7")
@@ -25,6 +27,7 @@ outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
 
 [node name="LV1" type="Node3D"]
+script = ExtResource("1_el06h")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_ptjn7")
@@ -1451,4 +1454,35 @@ transform = Transform3D(-0.7296649, -0.05543157, -0.68155473, 0.07501349, 0.9842
 player = NodePath("../Player")
 chase_radius = 20.0
 
+[node name="Node" type="Node" parent="."]
+
+[node name="Workout10823" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("19_nml88")
+
+[node name="RedFlash" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="damaged" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.19607843, 0.14117648, 0.21960784)
+
+[node name="heal" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.25882354)
+
+[node name="Timer" type="Timer" parent="RedFlash"]
+
+[connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
