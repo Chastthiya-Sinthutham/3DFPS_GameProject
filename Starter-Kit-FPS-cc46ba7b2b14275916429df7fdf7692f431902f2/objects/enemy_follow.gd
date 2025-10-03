@@ -45,6 +45,7 @@ func damage(amount):
 		destroy()
 
 func destroy():
+	GlobalScore.add_score(10) # ให้ +10 แต้มต่อ 1 ตัว
 	Audio.play("sounds/enemy_destroy.ogg")
 	destroyed = true
 	queue_free()

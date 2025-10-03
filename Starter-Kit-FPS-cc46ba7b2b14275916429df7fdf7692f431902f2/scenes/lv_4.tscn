@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b1fyqciwdgtfa"]
+[gd_scene load_steps=23 format=3 uid="uid://b1fyqciwdgtfa"]
 
 [ext_resource type="Script" uid="uid://cucwkkft2pj21" path="res://scenes/lv_4.gd" id="1_el06h"]
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_ptjn7"]
@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="4_ptjn7"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="5_5hbqt"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="6_0orcr"]
-[ext_resource type="PackedScene" uid="uid://bk6sqcljq78ns" path="res://models/Flag.glb" id="7_lh3j1"]
 [ext_resource type="PackedScene" uid="uid://bsl6h06bmex0h" path="res://objects/building_1.tscn" id="8_6awcy"]
 [ext_resource type="PackedScene" uid="uid://bgwwffdyaxiuj" path="res://objects/LV4_platform.tscn" id="10_ddh6v"]
 [ext_resource type="PackedScene" uid="uid://cq203w5dy1c52" path="res://objects/building_2.tscn" id="11_rf76j"]
@@ -18,13 +17,19 @@
 [ext_resource type="PackedScene" uid="uid://crdcxhjc1ne4k" path="res://objects/building_7.tscn" id="16_0orcr"]
 [ext_resource type="PackedScene" uid="uid://7j2v3wel26a7" path="res://objects/movingplatform.tscn" id="16_lh3j1"]
 [ext_resource type="PackedScene" uid="uid://co3c1fb5qjrx5" path="res://objects/enemy_follow2.tscn" id="17_lh3j1"]
+[ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="19_el06h"]
 [ext_resource type="AudioStream" uid="uid://dd8dfpgwylahg" path="res://music/workout-10823.mp3" id="19_nml88"]
+[ext_resource type="Script" uid="uid://sy41dvg5m6kg" path="res://objects/justportal5.gd" id="20_nml88"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sf5a2"]
 font = ExtResource("4_ptjn7")
 font_size = 36
 outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_el06h"]
+font = ExtResource("4_ptjn7")
+font_size = 31
 
 [node name="LV1" type="Node3D"]
 script = ExtResource("1_el06h")
@@ -71,6 +76,12 @@ text = "100%"
 label_settings = SubResource("LabelSettings_sf5a2")
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="score" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_el06h")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -1339,9 +1350,6 @@ transform = Transform3D(5.2212486, 0, -2.842814, 0, 5.945, 0, 2.842814, 0, 5.221
 [node name="cube290" parent="Decoration" instance=ExtResource("6_0orcr")]
 transform = Transform3D(3.09254, 1.9569547, -4.6850343, 3.0502217, 3.6693592, 3.5461218, 4.058986, -4.2484293, 0.9047093, 201.83635, 45.45288, -52.554836)
 
-[node name="flag" parent="." instance=ExtResource("7_lh3j1")]
-transform = Transform3D(-0.5140952, 0, -0.85773313, 0, 1, 0, 0.85773313, 0, -0.5140952, 189.9886, 34.23906, 0.5341027)
-
 [node name="environment" type="Node" parent="."]
 
 [node name="platform" parent="." instance=ExtResource("10_ddh6v")]
@@ -1482,6 +1490,10 @@ grow_vertical = 2
 color = Color(0, 1, 0, 0.25882354)
 
 [node name="Timer" type="Timer" parent="RedFlash"]
+
+[node name="justportal" parent="." instance=ExtResource("19_el06h")]
+transform = Transform3D(-2.9372063, 0, -0.274441, 0, 2.9499996, 0, 0.274441, 0, -2.9372063, 190.20445, 31.584236, 0.5710895)
+script = ExtResource("20_nml88")
 
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]

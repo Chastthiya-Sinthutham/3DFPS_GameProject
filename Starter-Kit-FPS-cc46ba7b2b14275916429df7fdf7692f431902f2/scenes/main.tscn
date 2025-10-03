@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=18 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Script" uid="uid://cjdbdtvm8wa4k" path="res://scenes/main.gd" id="1_jkv2x"]
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
@@ -21,6 +21,10 @@ font = ExtResource("3_w27de")
 font_size = 36
 outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
+font = ExtResource("3_w27de")
+font_size = 31
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jkv2x")
@@ -64,6 +68,12 @@ size_flags_vertical = 8
 text = "100%"
 label_settings = SubResource("LabelSettings_fpmwk")
 vertical_alignment = 2
+
+[node name="score" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_jkv2x")
 
 [node name="Enemies" type="Node" parent="."]
 

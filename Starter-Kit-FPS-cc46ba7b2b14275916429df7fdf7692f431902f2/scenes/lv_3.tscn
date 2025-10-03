@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b1c7uw5ih4c13"]
+[gd_scene load_steps=20 format=3 uid="uid://b1c7uw5ih4c13"]
 
 [ext_resource type="Texture2D" uid="uid://dm0a26braxlhh" path="res://models/ice/1000_F_1153165046_EsqwrAfB4hePvCFrbFeqtAVqyUf7bTJ5.jpg" id="1_uk7o7"]
 [ext_resource type="Script" uid="uid://dnbfp72ykl1c" path="res://scenes/lv_3.gd" id="1_wbaqx"]
@@ -10,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://5sqpxt8n1s64" path="res://objects/platform_ice_3.tscn" id="10_uk7o7"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="11_akrvx"]
 [ext_resource type="PackedScene" uid="uid://cdavypexerr3k" path="res://objects/platform_ice_4.tscn" id="11_tuvvs"]
-[ext_resource type="PackedScene" uid="uid://bk6sqcljq78ns" path="res://models/Flag.glb" id="12_ri4nv"]
 [ext_resource type="PackedScene" uid="uid://650ntwtxdvx6" path="res://objects/platform_ice.tscn" id="12_tuvvs"]
 [ext_resource type="AudioStream" uid="uid://cp4ho12xijueu" path="res://music/minecraft-fortnite-roblox-background-music-368024.mp3" id="13_4jh0y"]
+[ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="13_wbaqx"]
+[ext_resource type="Script" uid="uid://ormxdd5r3ty6" path="res://objects/justportal4.gd" id="14_4jh0y"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tuvvs"]
 panorama = ExtResource("1_uk7o7")
@@ -30,6 +31,10 @@ font_size = 36
 outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
 
+[sub_resource type="LabelSettings" id="LabelSettings_wbaqx"]
+font = ExtResource("4_w18ej")
+font_size = 31
+
 [node name="LV3" type="Node3D"]
 script = ExtResource("1_wbaqx")
 
@@ -37,7 +42,7 @@ script = ExtResource("1_wbaqx")
 environment = SubResource("Environment_4jh0y")
 
 [node name="Player" parent="." node_paths=PackedStringArray("crosshair") instance=ExtResource("2_wbaqx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2798996, 0)
+transform = Transform3D(0.006824158, 0, -0.9999767, 0, 1, 0, 0.9999767, 0, 0.006824158, 0, 7.2798996, 0)
 crosshair = NodePath("../HUD/Crosshair")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -75,6 +80,12 @@ text = "100%"
 label_settings = SubResource("LabelSettings_o8103")
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="score" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_wbaqx")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -242,9 +253,6 @@ transform = Transform3D(4.5898137, 0, -3.8566353, 0, 5.9950004, 0, 3.8566353, 0,
 [node name="cube4" parent="Decoration" instance=ExtResource("11_akrvx")]
 transform = Transform3D(1.12202, 1.39419, -2.40776, 1.53922, 1.85165, 1.78946, 2.31773, -1.90463, -0.0227883, 92.688156, 19.8096, -9.081415)
 
-[node name="flag" parent="." instance=ExtResource("12_ri4nv")]
-transform = Transform3D(-0.31937274, 0, -0.94762915, 0, 1, 0, 0.94762915, 0, -0.31937274, 90.13433, 33.41451, 0.13061595)
-
 [node name="platform_ice" parent="." instance=ExtResource("12_tuvvs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053864002, 2.7728372, 0.055847168)
 
@@ -402,6 +410,10 @@ grow_vertical = 2
 color = Color(0, 1, 0, 0.25882354)
 
 [node name="Timer" type="Timer" parent="RedFlash"]
+
+[node name="justportal" parent="." instance=ExtResource("13_wbaqx")]
+transform = Transform3D(-1.8276204, 0, -2.315664, -0.120304555, 2.9460154, 0.09494947, 2.3125367, 0.15325986, -1.8251523, 90.583824, 30.033472, -0.08840823)
+script = ExtResource("14_4jh0y")
 
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]

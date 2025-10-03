@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://db2gibfg25gd0"]
+[gd_scene load_steps=20 format=3 uid="uid://db2gibfg25gd0"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_8m25w"]
 [ext_resource type="Script" uid="uid://bagf7vg0hnq4i" path="res://scenes/lv_1.gd" id="1_apcyx"]
@@ -11,17 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://c71evdjblk5wp" path="res://objects/wall_high.tscn" id="8_wkeoe"]
 [ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="9_7yeru"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="10_030id"]
-[ext_resource type="PackedScene" uid="uid://bk6sqcljq78ns" path="res://models/Flag.glb" id="11_xadbf"]
 [ext_resource type="PackedScene" uid="uid://cn2ougwkihww" path="res://models/Tree.glb" id="12_nplwr"]
 [ext_resource type="PackedScene" uid="uid://dqbnl86mc0d8x" path="res://models/Tree (1).glb" id="13_psqw7"]
 [ext_resource type="PackedScene" uid="uid://do6kug4mpvpen" path="res://objects/rock.tscn" id="14_psqw7"]
+[ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="16_7yeru"]
 [ext_resource type="AudioStream" uid="uid://byg6uyww1ydru" path="res://music/pixel-rush-8-bit-chiptune-background-music-410043.mp3" id="16_wkeoe"]
+[ext_resource type="Script" uid="uid://go6adbf3pjxh" path="res://objects/justportal2.gd" id="17_030id"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sf5a2"]
 font = ExtResource("4_nplwr")
 font_size = 36
 outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkeoe"]
+font = ExtResource("4_nplwr")
+font_size = 31
 
 [node name="LV1" type="Node3D"]
 script = ExtResource("1_apcyx")
@@ -30,6 +35,7 @@ script = ExtResource("1_apcyx")
 environment = ExtResource("1_8m25w")
 
 [node name="Player" parent="." node_paths=PackedStringArray("crosshair") instance=ExtResource("2_xadbf")]
+transform = Transform3D(-0.06670922, 0, -0.99777246, 0, 1, 0, 0.99777246, 0, -0.06670922, 0, 0.5, 0)
 crosshair = NodePath("../HUD/Crosshair")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -67,6 +73,12 @@ text = "100%"
 label_settings = SubResource("LabelSettings_sf5a2")
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="score" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_wkeoe")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -326,9 +338,6 @@ transform = Transform3D(4.5898137, 0, -3.8566353, 0, 5.9950004, 0, 3.8566353, 0,
 [node name="cube4" parent="Decoration" instance=ExtResource("10_030id")]
 transform = Transform3D(1.12202, 1.39419, -2.40776, 1.53922, 1.85165, 1.78946, 2.31773, -1.90463, -0.0227883, 71.62483, 13.0297, -9.081415)
 
-[node name="flag" parent="." instance=ExtResource("11_xadbf")]
-transform = Transform3D(-0.31937274, 0, -0.94762915, 0, 1, 0, 0.94762915, 0, -0.31937274, 68.69303, 26.63461, 0.13061595)
-
 [node name="environment" type="Node" parent="."]
 
 [node name="Root Scene" parent="environment" instance=ExtResource("12_nplwr")]
@@ -389,6 +398,10 @@ grow_vertical = 2
 color = Color(0, 1, 0, 0.25882354)
 
 [node name="Timer" type="Timer" parent="RedFlash"]
+
+[node name="justportal" parent="." instance=ExtResource("16_7yeru")]
+transform = Transform3D(-2.9499965, 0, -0.0044277906, 0, 2.9499993, 0, 0.0044277906, 0, -2.9499965, 68.95046, 23.475254, 0.009333372)
+script = ExtResource("17_030id")
 
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://5qk8kc7yxyoa"]
+[gd_scene load_steps=20 format=3 uid="uid://5qk8kc7yxyoa"]
 
 [ext_resource type="Environment" uid="uid://b1715116eox1p" path="res://scenes/Level2-environment.tres" id="1_76toy"]
 [ext_resource type="Script" uid="uid://cb2fbxd8fhvso" path="res://scenes/level_2.gd" id="1_wvb8j"]
@@ -14,14 +14,19 @@
 [ext_resource type="PackedScene" uid="uid://dwvgakav2kln1" path="res://models/Level2/platform_4_level_2.tscn" id="13_56gwk"]
 [ext_resource type="PackedScene" uid="uid://br75dsk6u48go" path="res://objects/meteo.tscn" id="13_cleqw"]
 [ext_resource type="PackedScene" uid="uid://kh6vjfnxyi2w" path="res://objects/star.tscn" id="13_ve5ok"]
-[ext_resource type="PackedScene" uid="uid://bk6sqcljq78ns" path="res://models/Flag.glb" id="14_ve5ok"]
 [ext_resource type="AudioStream" uid="uid://bm5jdqkkm0w0j" path="res://music/spaceship-arcade-shooter-game-background-soundtrack-318508.mp3" id="16_g8vcy"]
+[ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="16_wvb8j"]
+[ext_resource type="Script" uid="uid://civl1cys6pna" path="res://objects/justportal3.gd" id="17_g8vcy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpmwk"]
 font = ExtResource("4_56gwk")
 font_size = 36
 outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvb8j"]
+font = ExtResource("4_56gwk")
+font_size = 31
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_wvb8j")
@@ -30,7 +35,7 @@ script = ExtResource("1_wvb8j")
 environment = ExtResource("1_76toy")
 
 [node name="Player" parent="." node_paths=PackedStringArray("crosshair") instance=ExtResource("2_76toy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58244896, 2.1640239, -0.029338598)
+transform = Transform3D(-0.009494444, 0, 0.99995494, 0, 1, 0, -0.99995494, 0, -0.009494444, -0.58244896, 2.1640239, -0.029338598)
 crosshair = NodePath("../HUD/Crosshair")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -66,6 +71,12 @@ size_flags_vertical = 8
 text = "100%"
 label_settings = SubResource("LabelSettings_fpmwk")
 vertical_alignment = 2
+
+[node name="score" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_wvb8j")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -237,9 +248,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6898, 46.7059, -48.9068)
 [node name="Node3D17" parent="Decoration" instance=ExtResource("13_cleqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.7408, 46.7059, 28.0539)
 
-[node name="Root Scene" parent="Decoration" instance=ExtResource("14_ve5ok")]
-transform = Transform3D(0.35955715, 0, 0.93312305, 0, 1, 0, -0.93312305, 0, 0.35955715, -65.00473, 16.246809, 3.504533)
-
 [node name="music" type="Node" parent="."]
 
 [node name="SpaceshipArcadeShooterGameBackgroundSoundtrack318508" type="AudioStreamPlayer" parent="music"]
@@ -269,6 +277,10 @@ color = Color(0, 1, 0, 0.25882354)
 
 [node name="Timer" type="Timer" parent="RedFlash"]
 
+[node name="justportal" parent="." instance=ExtResource("16_wvb8j")]
+transform = Transform3D(2.947975, 0, 0.109282255, 0, 2.9499996, 0, -0.109282255, 0, 2.947975, -65.21677, 13.693046, 3.4677904)
+script = ExtResource("17_g8vcy")
+
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
-[connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
+[connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
 [connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]

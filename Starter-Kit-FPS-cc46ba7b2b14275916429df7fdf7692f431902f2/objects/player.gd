@@ -49,6 +49,7 @@ signal player_hit
 
 func _ready():
 	
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	weapon = weapons[weapon_index] # Weapon must never be nil
@@ -97,7 +98,8 @@ func _process(delta):
 	# Falling/respawning
 	
 	if position.y < -10:
-		get_tree().reload_current_scene()
+		GlobalScore.reset_score()
+		call_deferred("_reload_scene")
 
 # Mouse movement
 
@@ -284,7 +286,8 @@ func damage(amount):
 	emit_signal("player_hit")
 	health_updated.emit(health) # Update health on HUD
 
-	if health < 0:
+	if health <= 0:
+		GlobalScore.reset_score()
 		call_deferred("_reload_scene") # Reset scene safely
 
 func _reload_scene():
