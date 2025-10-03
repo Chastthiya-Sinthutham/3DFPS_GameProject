@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://db2gibfg25gd0"]
+[gd_scene load_steps=18 format=3 uid="uid://db2gibfg25gd0"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_8m25w"]
+[ext_resource type="Script" uid="uid://bagf7vg0hnq4i" path="res://scenes/lv_1.gd" id="1_apcyx"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_xadbf"]
 [ext_resource type="Script" uid="uid://by0qn28x1i1jj" path="res://scripts/hud.gd" id="3_mulf8"]
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="4_nplwr"]
@@ -14,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cn2ougwkihww" path="res://models/Tree.glb" id="12_nplwr"]
 [ext_resource type="PackedScene" uid="uid://dqbnl86mc0d8x" path="res://models/Tree (1).glb" id="13_psqw7"]
 [ext_resource type="PackedScene" uid="uid://do6kug4mpvpen" path="res://objects/rock.tscn" id="14_psqw7"]
+[ext_resource type="AudioStream" uid="uid://byg6uyww1ydru" path="res://music/pixel-rush-8-bit-chiptune-background-music-410043.mp3" id="16_wkeoe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sf5a2"]
 font = ExtResource("4_nplwr")
@@ -22,6 +24,7 @@ outline_size = 12
 outline_color = Color(0, 0, 0, 0.470588)
 
 [node name="LV1" type="Node3D"]
+script = ExtResource("1_apcyx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_8m25w")
@@ -358,4 +361,35 @@ transform = Transform3D(-2.053059, 0, -1.3732616, 0, 2.47, 0, 1.3732616, 0, -2.0
 [node name="Root Scene9" parent="environment" instance=ExtResource("14_psqw7")]
 transform = Transform3D(-3.19738, 0, -2.8751974, 0, 4.299999, 0, 2.8751974, 0, -3.19738, 14.104823, 2.6940386, 4.1087856)
 
+[node name="music" type="Node" parent="."]
+
+[node name="PixelRush8BitChiptuneBackgroundMusic410043" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("16_wkeoe")
+
+[node name="RedFlash" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="damaged" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.19607843, 0.14117648, 0.21960784)
+
+[node name="heal" type="ColorRect" parent="RedFlash"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.25882354)
+
+[node name="Timer" type="Timer" parent="RedFlash"]
+
+[connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]
