@@ -59,9 +59,9 @@ func _on_timer_timeout():
 			muzzle_a.play("default")
 			muzzle_a.rotation_degrees.z = randf_range(-45, 45)
 
-			muzzle_b.frame = 0
-			muzzle_b.play("default")
-			muzzle_b.rotation_degrees.z = randf_range(-45, 45)
+			#muzzle_b.frame = 0
+			#muzzle_b.play("default")
+			#muzzle_b.rotation_degrees.z = randf_range(-45, 45)
 
 			Audio.play("sounds/enemy_attack.ogg")
 
