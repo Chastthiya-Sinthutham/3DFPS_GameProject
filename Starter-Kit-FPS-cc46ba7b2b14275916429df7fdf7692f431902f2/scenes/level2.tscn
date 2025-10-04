@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://5qk8kc7yxyoa"]
+[gd_scene load_steps=22 format=3 uid="uid://5qk8kc7yxyoa"]
 
 [ext_resource type="Environment" uid="uid://b1715116eox1p" path="res://scenes/Level2-environment.tres" id="1_76toy"]
 [ext_resource type="Script" uid="uid://cb2fbxd8fhvso" path="res://scenes/level_2.gd" id="1_wvb8j"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://bm5jdqkkm0w0j" path="res://music/spaceship-arcade-shooter-game-background-soundtrack-318508.mp3" id="16_g8vcy"]
 [ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="16_wvb8j"]
 [ext_resource type="Script" uid="uid://civl1cys6pna" path="res://objects/justportal3.gd" id="17_g8vcy"]
+[ext_resource type="PackedScene" uid="uid://dq7kuh0j12ggy" path="res://objects/spike.tscn" id="18_o3sye"]
+[ext_resource type="PackedScene" uid="uid://ti1jvtvrmhwg" path="res://objects/pickup_heal.tscn" id="19_24ks5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpmwk"]
 font = ExtResource("4_56gwk")
@@ -118,7 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74745, 2.34347, 4.41443)
 transform = Transform3D(1.475, 0, 0, 0, 1.475, 0, 0, 0, 1.475, -18.0414, 4.41545, 2.55354)
 
 [node name="platform1Level5" parent="Decoration" instance=ExtResource("11_76toy")]
-transform = Transform3D(2.32, 0, 0, 0, 2.32, 0, 0, 0, 2.32, -14.3345, 4.41545, 10.0415)
+transform = Transform3D(-0.8878254, 0, 2.1434004, 0, 2.32, 0, -2.1434004, 0, -0.8878254, -14.3345, 4.41545, 10.0415)
 
 [node name="platform_2_Level_2" parent="Decoration" instance=ExtResource("12_8g4ke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65207, 0.769771, -1.87255)
@@ -280,6 +282,22 @@ color = Color(0, 1, 0, 0.25882354)
 [node name="justportal" parent="." instance=ExtResource("16_wvb8j")]
 transform = Transform3D(2.947975, 0, 0.109282255, 0, 2.9499996, 0, -0.109282255, 0, 2.947975, -65.21677, 13.693046, 3.4677904)
 script = ExtResource("17_g8vcy")
+
+[node name="Trap" type="Node" parent="."]
+
+[node name="Root Scene" parent="Trap" instance=ExtResource("18_o3sye")]
+transform = Transform3D(0.725, 0, 0, 0, 0.725, 0, 0, 0, 0.725, -2.7258384, 3.3298168, 4.35912)
+
+[node name="Root Scene2" parent="Trap" instance=ExtResource("18_o3sye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.45194, 4.1131105, 7.480098)
+
+[node name="Item" type="Node" parent="."]
+
+[node name="Pickup_Health2" parent="Item" instance=ExtResource("19_24ks5")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, -13.482769, 7.6451406, 9.5765)
+
+[node name="Pickup_Health3" parent="Item" instance=ExtResource("19_24ks5")]
+transform = Transform3D(-0.041513044, 0, 0.6787317, 0, 0.68, 0, -0.6787317, 0, -0.041513044, -40.162132, 6.047641, 3.3741941)
 
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://b1c7uw5ih4c13"]
+[gd_scene load_steps=23 format=3 uid="uid://b1c7uw5ih4c13"]
 
-[ext_resource type="Texture2D" uid="uid://dm0a26braxlhh" path="res://models/ice/1000_F_1153165046_EsqwrAfB4hePvCFrbFeqtAVqyUf7bTJ5.jpg" id="1_uk7o7"]
 [ext_resource type="Script" uid="uid://dnbfp72ykl1c" path="res://scenes/lv_3.gd" id="1_wbaqx"]
+[ext_resource type="Texture2D" uid="uid://bv4ijgdlopkjs" path="res://sprites/Gradient_Sky-Blue_04-1024x512.png" id="2_4jh0y"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_wbaqx"]
 [ext_resource type="Script" uid="uid://by0qn28x1i1jj" path="res://scripts/hud.gd" id="3_4jh0y"]
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="4_w18ej"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="5_exw84"]
+[ext_resource type="PackedScene" uid="uid://co3c1fb5qjrx5" path="res://objects/enemy_follow2.tscn" id="7_v8cf1"]
 [ext_resource type="PackedScene" uid="uid://lupe5baoqvke" path="res://objects/platform_ice_2.tscn" id="9_pdvp7"]
 [ext_resource type="PackedScene" uid="uid://5sqpxt8n1s64" path="res://objects/platform_ice_3.tscn" id="10_uk7o7"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="11_akrvx"]
@@ -14,9 +15,11 @@
 [ext_resource type="AudioStream" uid="uid://cp4ho12xijueu" path="res://music/minecraft-fortnite-roblox-background-music-368024.mp3" id="13_4jh0y"]
 [ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="13_wbaqx"]
 [ext_resource type="Script" uid="uid://ormxdd5r3ty6" path="res://objects/justportal4.gd" id="14_4jh0y"]
+[ext_resource type="PackedScene" uid="uid://ti1jvtvrmhwg" path="res://objects/pickup_heal.tscn" id="16_g7lvt"]
+[ext_resource type="PackedScene" uid="uid://dq7kuh0j12ggy" path="res://objects/spike.tscn" id="17_r62fw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tuvvs"]
-panorama = ExtResource("1_uk7o7")
+panorama = ExtResource("2_4jh0y")
 
 [sub_resource type="Sky" id="Sky_wbaqx"]
 sky_material = SubResource("PanoramaSkyMaterial_tuvvs")
@@ -47,6 +50,7 @@ crosshair = NodePath("../HUD/Crosshair")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.42261794, -0.6942719, 0.58256376, 0, 0.64278793, 0.7660442, -0.9063079, 0.32374403, -0.27165374, 0, 6.7798996, 0)
+light_energy = 1.99
 shadow_enabled = true
 shadow_opacity = 0.75
 
@@ -139,6 +143,14 @@ player = NodePath("../../Player")
 
 [node name="enemy-flying4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("5_exw84")]
 transform = Transform3D(-0.8812888, -0.013049517, -0.47239816, 0.02801534, 0.99641794, -0.07978938, 0.47174734, -0.08355188, -0.8777664, 3.962449, 6.695136, 9.34747)
+player = NodePath("../../Player")
+
+[node name="enemy-follow" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("7_v8cf1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 64.04896, 22.6194, 1.5198689)
+player = NodePath("../../Player")
+
+[node name="enemy-follow2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("7_v8cf1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 25.720722, 10.306593, 1.5198689)
 player = NodePath("../../Player")
 
 [node name="Level" type="Node" parent="."]
@@ -414,6 +426,25 @@ color = Color(0, 1, 0, 0.25882354)
 [node name="justportal" parent="." instance=ExtResource("13_wbaqx")]
 transform = Transform3D(-1.8276204, 0, -2.315664, -0.120304555, 2.9460154, 0.09494947, 2.3125367, 0.15325986, -1.8251523, 90.583824, 30.033472, -0.08840823)
 script = ExtResource("14_4jh0y")
+
+[node name="Item" type="Node" parent="."]
+
+[node name="Pickup_Health2" parent="Item" instance=ExtResource("16_g7lvt")]
+transform = Transform3D(-0.09463769, 0, 0.6733823, 0, 0.68, 0, -0.6733823, 0, -0.09463769, 47.145737, 12.451622, -15.304912)
+
+[node name="Pickup_Health3" parent="Item" instance=ExtResource("16_g7lvt")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 18.135996, 10.360843, 7.4277296)
+
+[node name="Trap" type="Node" parent="."]
+
+[node name="Root Scene" parent="Trap" instance=ExtResource("17_r62fw")]
+transform = Transform3D(0.725, 0, 0, 0, 0.725, 0, 0, 0, 0.725, 44.675026, 9.222653, 0.8598952)
+
+[node name="Root Scene2" parent="Trap" instance=ExtResource("17_r62fw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.53464, 17.861647, -10.442967)
+
+[node name="Root Scene3" parent="Trap" instance=ExtResource("17_r62fw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.98918, 25.270727, 15.2795105)
 
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
