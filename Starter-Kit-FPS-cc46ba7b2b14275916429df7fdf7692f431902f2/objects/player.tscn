@@ -87,6 +87,7 @@ stream = ExtResource("8_3rfka")
 
 [node name="HealingMagic6378666" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("9_i8sra")
+volume_db = -5.0
 
 [node name="JumpC" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("10_4vq5b")

@@ -1,16 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2g78tpqbyf5g"]
 
-[ext_resource type="PackedScene" uid="uid://lde2xq3vq635" path="res://models/enemy-flying.glb" id="1_3v8nl"]
 [ext_resource type="Script" uid="uid://b6udw8uhlp4ei" path="res://objects/enemy.gd" id="1_jg24b"]
+[ext_resource type="PackedScene" uid="uid://3e7x2ixlhaow" path="res://objects/enemy_robot_fry.tscn" id="2_41oev"]
 [ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="3_iblw5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iix87"]
 radius = 0.75
 
 [node name="enemy-flying" type="Area3D"]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
 script = ExtResource("1_jg24b")
 
-[node name="enemy-flying" parent="." instance=ExtResource("1_3v8nl")]
+[node name="Root Scene" parent="." instance=ExtResource("2_41oev")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -20,12 +21,7 @@ shape = SubResource("SphereShape3D_iix87")
 target_position = Vector3(0, 0, 5)
 
 [node name="MuzzleA" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.45, 0.3, 0.4)
-sprite_frames = ExtResource("3_iblw5")
-frame = 2
-
-[node name="MuzzleB" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.45, 0.3, 0.4)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.010773301, 0.7888153, 0.87504315)
 sprite_frames = ExtResource("3_iblw5")
 frame = 2
 
