@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://db2gibfg25gd0"]
+[gd_scene load_steps=23 format=3 uid="uid://db2gibfg25gd0"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_8m25w"]
 [ext_resource type="Script" uid="uid://bagf7vg0hnq4i" path="res://scenes/lv_1.gd" id="1_apcyx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="5_psqw7"]
 [ext_resource type="PackedScene" uid="uid://r7rt7pth4u7o" path="res://objects/wall_low.tscn" id="6_8fw1v"]
 [ext_resource type="PackedScene" uid="uid://dpm3l05d7fu35" path="res://objects/platform.tscn" id="7_apcyx"]
+[ext_resource type="PackedScene" uid="uid://co3c1fb5qjrx5" path="res://objects/enemy_follow2.tscn" id="7_sf5a2"]
 [ext_resource type="PackedScene" uid="uid://c71evdjblk5wp" path="res://objects/wall_high.tscn" id="8_wkeoe"]
 [ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="9_7yeru"]
 [ext_resource type="PackedScene" uid="uid://oqfhfp1a80qd" path="res://objects/cloud.tscn" id="10_030id"]
@@ -17,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://xo5175buku2d" path="res://objects/justportal.tscn" id="16_7yeru"]
 [ext_resource type="AudioStream" uid="uid://byg6uyww1ydru" path="res://music/pixel-rush-8-bit-chiptune-background-music-410043.mp3" id="16_wkeoe"]
 [ext_resource type="Script" uid="uid://go6adbf3pjxh" path="res://objects/justportal2.gd" id="17_030id"]
+[ext_resource type="PackedScene" uid="uid://ti1jvtvrmhwg" path="res://objects/pickup_heal.tscn" id="18_030id"]
+[ext_resource type="PackedScene" uid="uid://dq7kuh0j12ggy" path="res://objects/spike.tscn" id="19_sf5a2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sf5a2"]
 font = ExtResource("4_nplwr")
@@ -117,6 +120,11 @@ player = NodePath("../../Player")
 [node name="enemy-flying4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("5_psqw7")]
 transform = Transform3D(-0.3263603, 0, -0.9452458, 0, 1, 0, 0.9452458, 0, -0.3263603, 15.5, 5.402709, -5.401147)
 player = NodePath("../../Player")
+
+[node name="enemy-follow4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("7_sf5a2")]
+transform = Transform3D(-0.4305023, -0.03270459, -0.4021171, 0.04425795, 0.58068085, -0.09460946, 0.40100995, -0.09919742, -0.42124918, 26.684082, 12.214116, -7.6984406)
+player = NodePath("../../Player")
+chase_radius = 20.0
 
 [node name="Level" type="Node" parent="."]
 
@@ -402,6 +410,25 @@ color = Color(0, 1, 0, 0.25882354)
 [node name="justportal" parent="." instance=ExtResource("16_7yeru")]
 transform = Transform3D(-2.9499965, 0, -0.0044277906, 0, 2.9499993, 0, 0.0044277906, 0, -2.9499965, 68.95046, 23.475254, 0.009333372)
 script = ExtResource("17_030id")
+
+[node name="Item" type="Node" parent="."]
+
+[node name="Pickup_Health2" parent="Item" instance=ExtResource("18_030id")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 7.5062265, 2.7259965, -12.689164)
+
+[node name="Pickup_Health3" parent="Item" instance=ExtResource("18_030id")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 20.023392, 6.047641, 1.8139982)
+
+[node name="Trap" type="Node" parent="."]
+
+[node name="Root Scene" parent="Trap" instance=ExtResource("19_sf5a2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89965534, 0.9449563, -5.6085377)
+
+[node name="Root Scene2" parent="Trap" instance=ExtResource("19_sf5a2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.880812, 9.019593, -1.4986315)
+
+[node name="Root Scene3" parent="Trap" instance=ExtResource("19_sf5a2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.114094, 12.598283, -8.976023)
 
 [connection signal="heal_effect" from="Player" to="." method="_on_player_heal_effect"]
 [connection signal="health_updated" from="Player" to="HUD" method="_on_player_health_updated"]
