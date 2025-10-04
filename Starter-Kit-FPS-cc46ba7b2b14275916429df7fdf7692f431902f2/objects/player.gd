@@ -173,7 +173,8 @@ func handle_gravity(delta):
 # Jumping
 
 func action_jump():	
-	Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
+	#Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
+	$Node/JumpC.play()
 	gravity = -jump_strength
 	jumps_remaining -= 1
 
@@ -285,6 +286,7 @@ func damage(amount):
 	health -= amount
 	emit_signal("player_hit")
 	health_updated.emit(health) # Update health on HUD
+	$Node/Hurt.play()
 
 	if health <= 0:
 		GlobalScore.reset_score()
@@ -297,5 +299,6 @@ func heal(amount):
 	health += amount
 	if health > max_health:
 		health = max_health
+	$Node/HealingMagic6378666.play()
 	emit_signal("heal_effect")
 	health_updated.emit(health)  # อัปเดต HUD ถ้ามีระบบนี้
