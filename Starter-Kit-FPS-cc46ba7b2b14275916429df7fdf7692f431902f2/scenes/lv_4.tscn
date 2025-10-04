@@ -943,6 +943,7 @@ chase_radius = 20.0
 
 [node name="Workout10823" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("19_nml88")
+volume_db = -10.0
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2

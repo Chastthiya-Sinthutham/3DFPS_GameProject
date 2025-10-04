@@ -382,6 +382,7 @@ transform = Transform3D(-3.19738, 0, -2.8751974, 0, 4.299999, 0, 2.8751974, 0, -
 
 [node name="PixelRush8BitChiptuneBackgroundMusic410043" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("16_wkeoe")
+volume_db = -10.0
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2

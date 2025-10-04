@@ -254,6 +254,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.7408, 46.7059, 28.0539)
 
 [node name="SpaceshipArcadeShooterGameBackgroundSoundtrack318508" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("16_g8vcy")
+volume_db = -10.0
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2

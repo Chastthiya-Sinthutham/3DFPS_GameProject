@@ -398,6 +398,7 @@ transform = Transform3D(0.3173117, -0.62721765, 3.0213106, 2.7679462, 1.400314, 
 
 [node name="MinecraftFortniteRobloxBackgroundMusic368024" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("13_4jh0y")
+volume_db = -10.0
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2
