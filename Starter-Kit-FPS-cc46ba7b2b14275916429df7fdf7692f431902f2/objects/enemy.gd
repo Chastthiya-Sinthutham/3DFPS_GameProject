@@ -4,7 +4,6 @@ extends Node3D
 
 @onready var raycast = $RayCast
 @onready var muzzle_a = $MuzzleA
-@onready var muzzle_b = $MuzzleB
 
 var health := 100
 var time := 0.0
