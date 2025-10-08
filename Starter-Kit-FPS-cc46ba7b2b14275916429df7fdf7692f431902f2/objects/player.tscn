@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=12 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" uid="uid://cu47grjp072jk" path="res://objects/player.gd" id="1_ffboj"]
 [ext_resource type="Resource" uid="uid://cu2gtxlcmbb34" path="res://weapons/blaster-repeater.tres" id="2_6epbw"]
@@ -7,6 +7,9 @@
 [ext_resource type="Resource" uid="uid://c56y8pqoyk15f" path="res://weapons/blaster.tres" id="3_kr4p8"]
 [ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="4_m6ukc"]
 [ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://sounds/walking.ogg" id="5_ics1s"]
+[ext_resource type="AudioStream" uid="uid://c0mexuc4vnw3v" path="res://sounds/hurt.mp3" id="8_3rfka"]
+[ext_resource type="AudioStream" uid="uid://dt8mttuj0g1c2" path="res://sounds/healing-magic-6-378666.mp3" id="9_i8sra"]
+[ext_resource type="AudioStream" uid="uid://7tnsakv8pwa5" path="res://sounds/jump_c.ogg" id="10_4vq5b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gdq8c"]
 radius = 0.3
@@ -76,3 +79,16 @@ autoplay = true
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("8_3rfka")
+
+[node name="HealingMagic6378666" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("9_i8sra")
+volume_db = -5.0
+
+[node name="JumpC" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("10_4vq5b")
+volume_db = 3.0

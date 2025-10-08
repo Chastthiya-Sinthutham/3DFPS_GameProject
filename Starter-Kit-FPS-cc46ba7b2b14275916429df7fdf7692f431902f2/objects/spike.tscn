@@ -96,6 +96,7 @@ skeleton = NodePath("")
 [node name="Area3D" type="Area3D" parent="RootNode/Spikes_Platform"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Spikes_Platform/Area3D"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_gv2ct")
 
 [connection signal="body_entered" from="RootNode/Spikes_Platform/Area3D" to="." method="_on_area_3d_body_entered"]

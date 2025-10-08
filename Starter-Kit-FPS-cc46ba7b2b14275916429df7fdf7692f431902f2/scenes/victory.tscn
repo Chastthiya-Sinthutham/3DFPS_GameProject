@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn3drwanvefo0"]
+[gd_scene load_steps=8 format=3 uid="uid://cn3drwanvefo0"]
 
 [ext_resource type="Script" uid="uid://dtmjq8enhfg15" path="res://scenes/victory.gd" id="1_g6lwx"]
 [ext_resource type="Texture2D" uid="uid://bur18kxnk7jm" path="res://UiBlackgroud/victory3D.png" id="1_le47n"]
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="2_hl81x"]
 [ext_resource type="Texture2D" uid="uid://c28gf4bmjtby" path="res://UiBlackgroud/logovic.png" id="3_hl81x"]
 [ext_resource type="Script" uid="uid://c315x5pkkdq4v" path="res://scenes/hud2.gd" id="4_73dpb"]
+[ext_resource type="AudioStream" uid="uid://djtmigpq0otil" path="res://music/champions-victory-winner-music-333682.mp3" id="6_5hn41"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6lwx"]
 font = ExtResource("2_hl81x")
@@ -46,5 +47,11 @@ offset_right = 735.0
 offset_bottom = 256.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_g6lwx")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ChampionsVictoryWinnerMusic333682" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("6_5hn41")
+volume_db = -16.078
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

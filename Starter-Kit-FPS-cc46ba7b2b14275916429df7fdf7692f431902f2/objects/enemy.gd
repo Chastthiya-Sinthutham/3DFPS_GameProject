@@ -4,7 +4,6 @@ extends Node3D
 
 @onready var raycast = $RayCast
 @onready var muzzle_a = $MuzzleA
-@onready var muzzle_b = $MuzzleB
 
 var health := 100
 var time := 0.0
@@ -59,9 +58,9 @@ func _on_timer_timeout():
 			muzzle_a.play("default")
 			muzzle_a.rotation_degrees.z = randf_range(-45, 45)
 
-			muzzle_b.frame = 0
-			muzzle_b.play("default")
-			muzzle_b.rotation_degrees.z = randf_range(-45, 45)
+			#muzzle_b.frame = 0
+			#muzzle_b.play("default")
+			#muzzle_b.rotation_degrees.z = randf_range(-45, 45)
 
 			Audio.play("sounds/enemy_attack.ogg")
 

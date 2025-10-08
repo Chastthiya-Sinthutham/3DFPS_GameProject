@@ -42,6 +42,7 @@ text = "EXIT"
 
 [node name="TensionDimension290455" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_s5g8n")
+volume_db = -10.0
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
