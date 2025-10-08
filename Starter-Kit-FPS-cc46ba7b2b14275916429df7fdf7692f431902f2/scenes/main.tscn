@@ -75,6 +75,36 @@ offset_bottom = 23.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_jkv2x")
 
+[node name="portal" type="Label3D" parent="HUD"]
+transform = Transform3D(-0.47067535, 0.004724994, 0.88229364, -0.13020487, 0.98866504, -0.07475456, -0.8726462, -0.15006432, -0.46472484, -6.390378, 3.3717875, 0.25398058)
+text = "<-Enter the portal for 
+go to the next Level"
+font = ExtResource("3_w27de")
+font_size = 77
+outline_size = 22
+
+[node name="Enemy" type="Label3D" parent="HUD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4847314, 2.9359357, -5.9874244)
+text = "<- Kill Enemy for Recive your point"
+font = ExtResource("3_w27de")
+font_size = 37
+outline_size = 22
+
+[node name="Enemy2" type="Label3D" parent="HUD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63218117, 1.4931989, -4.9465017)
+text = "<- This is Healing Item"
+font = ExtResource("3_w27de")
+font_size = 37
+outline_size = 22
+
+[node name="trap" type="Label3D" parent="HUD"]
+transform = Transform3D(-0.9876938, 0, -0.15640005, 0, 1, 0, 0.15640005, 0, -0.9876938, 3.0582707, 1.5497599, 5.795632)
+text = "<- This is Spike that will
+ make damage to you"
+font = ExtResource("3_w27de")
+font_size = 52
+outline_size = 22
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="enemy-flying" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
@@ -102,10 +132,10 @@ transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 
 transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 6.07912, 1.05, 6.59834)
 
 [node name="platform" parent="Level" instance=ExtResource("5_3s40e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 6.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9280391, 0, 6.5)
 
 [node name="platform2" parent="Level" instance=ExtResource("5_3s40e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.5, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.5, -3.4518657)
 
 [node name="platform3" parent="Level" instance=ExtResource("5_3s40e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -3.5)
@@ -184,6 +214,15 @@ transform = Transform3D(2.086693, 0, 2.0852365, 0, 2.9499998, 0, -2.0852365, 0, 
 
 [node name="Movingplatform" parent="." instance=ExtResource("14_jkv2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2576303, 0, 11.914553)
+point_a = Vector3(-2.5, 0, 6.5)
+point_b = Vector3(-2.5, 10, 6.5)
+
+[node name="Label3D" type="Label3D" parent="Movingplatform"]
+transform = Transform3D(-0.99863595, 0, -0.052214064, 0, 1, 0, 0.052214064, 0, -0.99863595, 0, 1.3582132, 0)
+text = "This is Moving Platform"
+font = ExtResource("3_w27de")
+font_size = 77
+outline_size = 22
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2
